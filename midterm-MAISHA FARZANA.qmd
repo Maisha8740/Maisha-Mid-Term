@@ -1,0 +1,644 @@
+---
+title: "BSMM-midterm"
+subtitle: "BSMM 8740 Fall 2023"
+author: "Maisha Farzana"
+date: "30 Oct 2023"
+editor: visual
+format: html
+self-contained: true
+---
+
+```{r}
+#| echo: false
+require(magrittr, quietly=T)
+require(ggplot2, quietly=T)
+```
+
+# Instructions
+
+::: callout-important
+To access Github from the lab, you will need to make sure you are logged in as follows:
+
+-   username: **.\\daladmin**
+-   password: **Business507!**
+
+Remember to
+
+-   create your PAT using `usethis::create_github_token()` ,
+-   store your PAT with `gitcreds::gitcreds_set()` ,
+-   set your username and email with
+    -   `usethis::use_git_config( user.name = ___, user.email = ___)`
+:::
+
+## Overview
+
+The midterm will be released on Monday, October 30, and is designed to be completed in 60+ minutes.
+
+The exam will consist of two parts:
+
+1.  **Part 1 - Conceptual:** Simple questions designed to evaluate your familiarity with the written course notes.
+2.  **Part 2 - Applied:** Data analysis in RStudio (like a usual lab, but simpler).
+
+Log in to *your* github account and then go to the [GitHub organization](https://github.com/bsmm-8740-fall-2023) for the course and find the **BSMM-midterm-\[your github username\]** repository to complete the exam.
+
+Create an R project using your `midterm` repository (remember to create a PAT, etc., as in lab-1) and add your answers by editing the `midterm.qmd` file in your repository. Your first edits should be to the **date** and **your name** (as author) at the top of this document.
+
+Be sure that you have [saved]{.underline}, [staged]{.underline}, [committed]{.underline}, and [pushed]{.underline} your work before the end of the exam.
+
+🍀 Good luck! 🍀
+
+## Academic Integrity
+
+By taking this exam, you pledge to that:
+
+-   I will not lie, cheat, or steal in my academic endeavors;
+
+-   I will conduct myself honorably in all my endeavors; and
+
+-   I will act if the Standard is compromised.
+
+## Rules & Notes
+
+-   This is an individual assignment. Everything in your repository is for your eyes only.
+
+-   You may not collaborate or communicate anything about this exam to **anyone** except the instructor. For example, you may not communicate with other students or post/solicit help on the internet, email or via any other method of communication.
+
+-   The exam is open-book, open-note, so you may use any materials from class as you take the exam.
+
+## Submission
+
+-   Your answers should be typed in the document below (or answer by deleting alternative answers in multiple choice questions.
+
+-   Make sure you commit any changes and push the changes to the course repository before the end of the quiz.
+
+-   Once the quiz has ended, the contents of your repository will be pulled for grading. This will happen only once, so no changes made after the end of the quiz will be recorded.
+
+------------------------------------------------------------------------
+
+# Quiz-1 (part 1)
+
+## Q-1
+
+In the recipes:: package, which function is used to *compute* the steps of the recipe?
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER :
+
+*Delete the wrong answer(s):*
+
+-   prep
+:::
+
+## Q-2
+
+In lasso regression, the regression coefficients minimize:
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER:
+
+*Delete the wrong answer(s) below*.
+
+1.  sum of coefficient absolute values
+:::
+
+## Q-3
+
+Recall that the first step of a decision-tree regression model will divide the space of predictors into 2 parts and estimate constant prediction values for each part. For one predictor, the result of the first step is
+
+$$
+\hat{y} = \hat{f}(x)=\sum_{i=1}^{2}c_i\times I_{(x\in R_i)}
+$$such that
+
+$$
+\text{SSE}=\left\{ \sum_{i\in R_{1}}\left(y_{i}-c_{i}\right)^{2}+\sum_{i\in R_{2}}\left(y_{i}-c_{i}\right)^{2}\right\} 
+$$
+
+is minimized.
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER:
+
+On the first split of a decision tree model for the following data:
+
+```{r}
+#| fig-align: center
+set.seed(8740)
+tibble::tibble(
+  x = seq(0,1,0.025) + rnorm(1+1/0.025,0,0.005)
+  , y = x + rnorm(length(x),0,0.05)
+) %>% 
+  ggplot( aes(x=x,y=y) ) + geom_point()
+
+```
+
+The first two regions that partition x will be (Delete the wrong answer(s) below):
+
+-   \[0,1/3\] and (1/3, 3/3\]
+:::
+
+## Q-4
+
+Given the last question, the first two estimated constants will be:
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER:
+
+Delete the wrong answer(s) below:
+
+-   0,1
+:::
+
+## Q-5
+
+In performing EDA on client data, which of the following are **unlikely** to be an encoding for a missing numerical value:
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER:
+
+Keep the answer(s) you think might be appropriate
+
+-   NA
+-   Nan (not a number)
+-   I'll need to confirm with the client
+:::
+
+## Q6
+
+Your client has provided data where the day of the week was encoded as the numbers 0-6, for a business problem to be modeled as a regression. Please comment on their choice of encoding.
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER:
+
+Write your comments here:
+
+If the data exhibits cyclical patterns or logical sequence, a suitable option might be encoding the day of the week as a number between 0 and 6. Nevertheless there is a more complicated or nonlinear relationship between days and the target variable, where it is important to understand the underlying assumptions and take feature engineering or alternates encoding techniques into account. Making a decision that fits the regression model's goals and requirements is important.
+:::
+
+## Q7
+
+In an ordinary linear regression relating y to x for the data of question 3, the regression coefficient can be estimated as:
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER:
+
+Delete the wrong answer(s) below
+
+-   $\frac{\text{covar(x,y)}}{\text{var(x)}}$
+:::
+
+## Q8
+
+A term used to describe the case when the predictors in a multiple regression model are highly correlated is called:
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER:
+
+Delete the wrong answer(s) below
+
+-   Multicollinearity
+:::
+
+# Quiz-1 (part 2)
+
+## Q9
+
+For the data below, it is expected that the response variable y can be described by the independent variables x1 and x2. This implies that the parameters of the following model should be estimated and tested
+
+$$
+y = \beta_0 + \beta_1x1 + \beta_2x2 + \epsilon, \epsilon ∼ \mathcal{N}(0, \sigma^2)
+$$
+
+```{r}
+dat <- tibble::tibble(
+  x1=c(0.58, 0.86, 0.29, 0.20, 0.56, 0.28, 0.08, 0.41, 0.22, 0.35, 0.59, 0.22, 0.26, 0.12, 0.65, 0.70, 0.30
+        , 0.70, 0.39, 0.72, 0.45, 0.81, 0.04, 0.20, 0.95)
+  , x2=c(0.71, 0.13, 0.79, 0.20, 0.56, 0.92, 0.01, 0.60, 0.70, 0.73, 0.13, 0.96, 0.27, 0.21, 0.88, 0.30
+        , 0.15, 0.09, 0.17, 0.25, 0.30, 0.32, 0.82, 0.98, 0.00)
+  , y=c(1.45, 1.93, 0.81, 0.61, 1.55, 0.95, 0.45, 1.14, 0.74, 0.98, 1.41, 0.81, 0.89, 0.68, 1.39, 1.53
+        , 0.91, 1.49, 1.38, 1.73, 1.11, 1.68, 0.66, 0.69, 1.98)
+)
+```
+
+Calculate the parameter estimates ( $\hat{\beta}_0$, $\hat{\beta}_1$, and $\hat{\beta}_2$); in addition find the usual 95% confidence intervals for $\beta_0$, $\beta_1$, $\beta_2$.
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER:
+
+```{r}
+# your code goes here
+
+
+# Load required packages
+library(broom)
+
+# Fit the multiple linear regression model
+model <- lm(y ~ x1 + x2, data = dat)
+
+# Summarize the model and calculate parameter estimates and confidence intervals
+summary_model <- tidy(model, conf.int = TRUE)
+
+# Calculate the residuals
+residuals <- augment(model, dat)
+
+# Calculate \hat{\sigma}^2
+sigma_hat_squared <- sum(residuals$.resid^2) / (length(dat$y) - length(model$coefficients))
+
+# Display the results
+summary_model
+cat("\n")
+cat("Estimated \u03B2 values:\n")
+cat("\u03B2_0 (Intercept):", coef(model)[1], "\n")
+cat("\u03B2_1 (x1):", coef(model)[2], "\n")
+cat("\u03B2_2 (x2):", coef(model)[3], "\n")
+cat("\n")
+cat("Estimated \u03C3^2 (sigma squared):\n")
+cat(sigma_hat_squared, "\n")
+```
+
+Hint: use `broom::tidy(conf.int = TRUE)` with a regression model
+:::
+
+Bonus: using the `.resid` column created by `broom::augment(___, dat)` , calculate $\hat{\sigma}^2$.
+
+## Q10
+
+Execute the following code to read sales data from a csv file and answer the questions about the code below.
+
+```{r}
+#| echo: true
+#| message: false
+#| error: false
+
+require(magrittr)
+require(ggplot2)
+
+# read sales data
+sales_dat <-
+  readr::read_csv("data/sales_data_sample.csv", show_col_types = FALSE) %>%
+  janitor::clean_names() %>% 
+  dplyr::mutate(
+    orderdate = lubridate::as_date(orderdate, format = "%m/%d/%Y %H:%M")
+    , orderdate = lubridate::year(orderdate)
+  )
+
+```
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER :
+
+Without executing the code:
+
+-   describe the result of the **`clean_names`** step.
+
+The code changes the dataset's column names to a standard format in the 'clean names' stage. It carries out the following changes:
+
+**#Lowercase all columns names:**
+
+This factor make sure all columns names are written in lower case, which makes them more readable and consistent.
+
+**#Replaces spaces with underscores:**
+
+All spaces are changed to underscores in the original columns names. This helps in the creation of column names appropriate for data analysis, particularly when programmatic column references are required.
+
+This process returns a dataset with lowercase coloumn names and underscores in places of spaces. If the original dataset contained a coloumn named such as, 'Order Date', it would be changed to 'order_date' following the clean names.
+
+-   describe the result of the **`mutate`** step.
+
+During the mutate phase the code manipulates the dataset's 'orderdate' column. It carries out the following changes:
+
+**#The 'orderdate' column is transformed into a date format:**
+
+The 'orderdate' coloumn is transformed into a date format by implying the lubridate::as_date function. It assumes the original date values were in the format '%m/%d/%Y %H%M' when interpreting the date format.
+
+**#Uses the 'orderdate' column to extract the year:**
+
+The code utilizes lubridate::year to extract the year from the date values after converting 'oderdate' to a date format.
+
+This step causes a new column with just the year values to be added in place of the 'orderdate' coloumn. This can be helpful, when explaining or combining the data on an annual basis.
+:::
+
+## Q11
+
+Using the sales data that was loaded in the last question, describe what the group_by step does in the code below, and complete the code to produce a sales summary by year, i.e. productline and years are the columns (one column for each year), while each year column contains the sales for each productline that year. Execute your code to confirm that it is doing what you expect.
+
+```{r}
+#| eval: false
+  sales_dat %>% 
+    dplyr::group_by(orderdate, productline) %>% 
+    dplyr::summarize( sales = sum(___) ) %>% 
+    tidyr::pivot_wider(names_from = ___, values_from = ___)
+```
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER :
+
+-   the result of the **`group_by`** step is:
+
+    The group_by step groups the data by "orderdate" and "productline," creating subsets of the data for each unique combination of these two variables. This grouping is essential for summarizing the data by these combinations.
+
+-   the sales summary table produced by the code is given below
+
+```{r}
+# executed code
+
+
+
+# Load required packages if not already loaded
+library(dplyr)
+library(tidyr)
+
+# Calculate the sales summary
+sales_summary <- sales_dat %>%
+  group_by(orderdate, productline) %>%
+  summarise(sales = sum(sales), .groups = "drop") %>%
+  pivot_wider(names_from = orderdate, values_from = sales)
+
+# View the sales summary table
+sales_summary
+
+```
+:::
+
+## Q12
+
+Execute the following code to read salary data from a csv file and perform the following analyses.
+
+-   code an ordinary linear regression to estimate the best linear relationship between monthly salary (the outcome, in \$000's) and months of experience.
+-   extract the residuals from the fit object( using fit\$residuals) and show the qqplot (using `qqnorm`) for the residuals.
+-   which assumption of ordinary linear regression does the qqplot validate.
+-   is the assumption satisfied in this case?
+
+**#Answer:**
+
+The assumption of residual normality in ordinary linear regression is supported by the QQ plot. It determines that if the disparities between the actual and expected values, or residuals, conform to a normal distribution.
+
+A p-value of 0.05902, which is somewhat less than the usual significance level of 0.05, was obtained in this instance by the Shapiro-Wilk test. A p-value of less than 0.05 indicates evidence that the data does not follow a normal distribution, which is the null hypothesis. However, the p-value is sometimes seen as inconclusive when it is only marginally less than 0.05.
+
+It appears that even if the residuals might not exactly follow a normal distribution, the deviation from normality might not be severe given the QQ plot and the marginally non-significant Shapiro-Wilk test result. In this case, assuming your sample size is high enough, the assumption of residual normality may be roughly satisfied.
+
+Here, things to be noted is that with larger sample sizes, linear regression is frequently rather resilient to deviations from normalcy. Thus, one might want to think about using various diagnostic methods and tests, or investigate how any non-normality might affect the validity of one's findings.
+
+```{r}
+#| echo: true
+salary_dat <-
+  readr::read_csv("data/Experience-Salary.csv", show_col_types = FALSE) %>%
+  janitor::clean_names()
+```
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER:
+
+```{r}
+library(dplyr)
+library(readr)
+library(janitor)
+library(stats)
+
+# Read the salary data
+salary_dat <- read_csv("Experience-Salary.csv", show_col_types = FALSE) %>%
+  janitor::clean_names()
+
+# Fit an ordinary linear regression model
+lm_model <- lm(salary_in_thousands ~ exp_in_months, data = salary_dat)
+
+# Extract residuals
+residuals <- lm_model$residuals
+
+# Create a QQ plot for the residuals
+qqnorm(residuals)
+qqline(residuals)
+
+# Check the assumption being validated
+# The QQ plot checks the normality assumption of residuals.
+
+# Assess whether the assumption is satisfied
+shapiro.test(residuals)
+
+```
+:::
+
+## Q13
+
+Execute the following code to read student performance data from a csv file and code the following analyses where the outcome/target variable is **performance_index**, and all other columns are predictors.
+
+-   use `rsample::initial_split` to create training and test datasets, and extract the training and test datasets using the corresponding `rsample::?` functions
+-   use `recipes::recipe` to preprocess the data by normalizing the numeric predictors and creating dummy variables for the nominal predictors
+-   prep the recipe you created and then use it with recipes::bake applied to the **training** dataset to create a analysis dataset.
+-   run an ordinary linear regression to predict **performance_index** from the predictors, using the analysis dataset. Save the fit object.
+-   use `broom::augment` (fit, data) to combine your linear fit with the corresponding training data. This step gives a tibble with a `.resid` column that is the difference between the prediction and the observed value.
+-   use the .resid column to calculate the mean squared error (mse) of the fit to the training data.
+
+```{r}
+#| echo: true
+#| eval: false
+performance_dat <-
+  readr::read_csv("data/Student_Performance.csv", show_col_types = FALSE) %>%
+  janitor::clean_names()
+
+```
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER:
+
+```{r}
+#| eval: false
+splits <- rsample::initial_split(performance_dat)
+training <- ?
+testing <- ?
+
+rec <- training %>%
+  recipes::recipe(performance_index ~ .) %>% 
+  recipes::step_ ?  %>% 
+  recipes::setp_ ?
+  
+performance_fit <- lm(performance_index ~ .,
+   data = ?)  
+
+result <- broom::augment(?,?)
+
+result %>% 
+  dplyr::mutate( mse = ?)
+```
+:::
+
+```{r}
+# Load required packages
+library(rsample)
+library(recipes)
+library(broom)
+library(dplyr)
+
+# Read the student performance data
+performance_dat <- readr::read_csv("data/Student_Performance.csv", show_col_types = FALSE) %>%
+  janitor::clean_names()
+
+# Split the data into training and testing datasets
+splits <- initial_split(performance_dat, prop = 0.7)  # You can adjust the proportion as needed
+training <- training(splits)
+testing <- testing(splits)
+
+# Create and prepare a recipe for data preprocessing
+rec <- recipe(performance_index ~ ., data = training) %>% 
+  step_normalize(all_numeric()) %>% 
+  step_dummy(all_nominal())
+
+prepped_rec <- prep(rec, training)
+
+# Apply the recipe to the training dataset
+analysis_data <- bake(prepped_rec, new_data = training)
+
+# Run an ordinary linear regression
+performance_fit <- lm(performance_index ~ ., data = analysis_data)
+
+# Augment the linear fit with the training data
+result <- augment(performance_fit, data = analysis_data)
+
+# Calculate the mean squared error (mse) of the fit to the training data
+mse <- mean(result$.resid^2)
+
+# View the mean squared error
+mse
+```
+
+## Q14
+
+Execute the following code to read employee absence data from a *.xls* file and create a recipe to preprocess the data. Do the following:
+
+-   familiarize yourself with the data using `skimr::skim()` ,
+-   describe what each step of the recipe is doing,
+-   split the data into training and test sets, where the training set represents 80% of the data (the default is 75%).
+-   add the missing arguments to the code that trains an xgboost model. You will need to prep the recipe & bake the prepped recipe. Finally you will need to ensure your argument is a matrix, by using `as.matrix()` .
+-   pull the top 10 predictors from the model using `xgboost::xgb.importance(model = ., top_n = 10)`
+-   finally, plot the top 10 predictors. What it the most important predictor of absenteeism time per this model?
+
+```{r}
+
+#| eval: false
+dat <-
+  readxl::read_xls("data/Absenteeism_at_work.xls") %>%
+  janitor::clean_names() %>%
+  # drop id, because it has no predictive value
+  # drop reason_for_absence because it has too much predictive value
+  dplyr::select( -c(id, reason_for_absence) )
+
+absenteeism_rec <- dat %>%
+  recipes::recipe(absenteeism_time_in_hours ~ .) %>%
+  recipes::step_mutate(
+    month_of_absence   = ifelse(month_of_absence>0, month.name[month_of_absence], "unknown")
+    , day_of_the_week  = lubridate::wday(day_of_the_week, label=T)
+    , seasons          = dplyr::case_when(
+                            seasons==1 ~ 'winter',seasons==2 ~ 'spring'
+                            ,seasons==3 ~ 'summer',seasons==4 ~ 'fall'
+                          )
+    , social_drinker   = dplyr::case_when(social_drinker>0 ~ "Yes", TRUE ~ "No")
+    , social_smoker    = dplyr::case_when(social_smoker>0 ~ "Yes", TRUE ~ "No")
+    , disciplinary_failure = dplyr::case_when(disciplinary_failure>0 ~ "Yes", TRUE ~ "No")
+  ) %>%
+  recipes::step_string2factor(where(is.character)) %>%
+  recipes::step_normalize(recipes::all_numeric_predictors()) %>%
+  recipes::step_dummy(recipes::all_nominal_predictors())
+
+untuned_xgb <-
+  xgboost::xgboost(
+    data = ?,
+    label = ?,
+    nrounds = 1000,
+    objective = "reg:squarederror",
+    early_stopping_rounds = 3,
+    max_depth = 6,
+    eta = .25
+    , verbose = FALSE
+  )
+```
+
+::: {.callout-note appearance="simple" icon="false"}
+## YOUR ANSWER:
+
+```{r}
+# your code goes here
+
+
+# Load required packages
+library(readxl)
+library(janitor)
+library(dplyr)
+library(lubridate)
+library(recipes)
+library(xgboost)
+library(skimr)
+library(ggplot2)
+
+# Read the employee absence data
+dat <- read_xls("data/Absenteeism_at_work.xls") %>%
+  janitor::clean_names() %>%
+  select(-c(id, reason_for_absence))
+
+# Create a recipe for data preprocessing
+absenteeism_rec <- dat %>%
+  recipes::recipe(absenteeism_time_in_hours ~ .) %>%
+  recipes::step_mutate(
+    month_of_absence   = ifelse(month_of_absence > 0, month.name[month_of_absence], "unknown"),
+    day_of_the_week    = wday(day_of_the_week, label = TRUE),
+    seasons            = case_when(
+                            seasons == 1 ~ 'winter', seasons == 2 ~ 'spring',
+                            seasons == 3 ~ 'summer', seasons == 4 ~ 'fall'
+                          ),
+    social_drinker     = case_when(social_drinker > 0 ~ "Yes", TRUE ~ "No"),
+    social_smoker      = case_when(social_smoker > 0 ~ "Yes", TRUE ~ "No"),
+    disciplinary_failure = case_when(disciplinary_failure > 0 ~ "Yes", TRUE ~ "No")
+  ) %>%
+  recipes::step_string2factor(where(is.character)) %>%
+  recipes::step_normalize(recipes::all_numeric_predictors()) %>%
+  recipes::step_dummy(recipes::all_nominal_predictors())
+
+# Prepare the recipe
+prep_absenteeism <- prep(absenteeism_rec)
+
+# Apply the prepped recipe to the data
+data_absenteeism <- bake(prep_absenteeism, new_data = dat)
+
+# Split the data into training and test sets (80% training, 20% test)
+set.seed(123)  # for reproducibility
+split <- initial_split(data_absenteeism, prop = 0.8)
+train_data <- training(split)
+test_data <- testing(split)
+
+# Define the labels and features for XGBoost
+X_train <- as.matrix(select(train_data, -absenteeism_time_in_hours))
+y_train <- train_data$absenteeism_time_in_hours
+
+# Train an XGBoost model
+untuned_xgb <- xgboost(
+  data = X_train,
+  label = y_train,
+  nrounds = 1000,
+  objective = "reg:squarederror",
+  early_stopping_rounds = 3,
+  max_depth = 6,
+  eta = 0.25,
+  verbose = FALSE
+)
+
+# Pull the top predictors from the model
+importance <- xgboost::xgb.importance(model = untuned_xgb)
+
+
+# Plot the top predictors
+importance %>%
+  as.data.frame() %>%
+  arrange(desc(Gain)) %>%  # Sort by Gain in descending order
+  head(10) %>%  # Select the top 10 predictors
+  ggplot(aes(x = Gain, y = Feature)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 10 Predictors Importance") +
+  theme_minimal()
+```
+:::
+
+# Grading (20 pts)
+
+| **Part**                | **Points** |
+|:------------------------|:----------:|
+| **Part 1 - Conceptual** |     10     |
+| **Part 2 - Applied**    |     10     |
+| **Total**               |     20     |
